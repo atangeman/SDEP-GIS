@@ -11,7 +11,7 @@ SDEP-GIS consists of three components: 1. The online/mobile data collection and 
 
 **Mobile-Ready Component**
 
-![Alt text](http://static1.squarespace.com/static/5230533de4b0a5b139ff428f/t/55e5a9c0e4b0c825de437df0/1441114561032/)
+![Alt text](blob:https%3A//drive.google.com/447c00c8-3b32-4555-9ac5-1402a7dde1e7)
  <br />
 
 The mobile-ready application allows users to collect data as they witness it on the ground in real-time. Although the app is available via any web browser, only mobile users can edit data. The data is collected using the actual geographic coordinates of the contributor as well as photo attachments for further verification. The use of real-time coordinates adds an extra layer of authenticity that will ensure that the responder is actually present in the location being recorded.
