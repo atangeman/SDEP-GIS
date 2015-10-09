@@ -35,6 +35,7 @@ var Webcam = {
 	hooks: {}, // callback hook functions
 
 	init: function() {
+		try {
 		// initialize, check for getUserMedia support
 		var self = this;
 
@@ -57,6 +58,9 @@ var Webcam = {
 				}
 			} );
 		}
+	} catch {
+
+	}
 	},
 
 	attach: function(elem) {
@@ -207,58 +211,74 @@ var Webcam = {
 	},
 
 	on: function(name, callback) {
-		// set callback hook
-		name = name.replace(/^on/i, '').toLowerCase();
-		if (!this.hooks[name]) this.hooks[name] = [];
-		this.hooks[name].push( callback );
+		try
+		{
+			// set callback hook
+			name = name.replace(/^on/i, '').toLowerCase();
+			if (!this.hooks[name]) this.hooks[name] = [];
+			this.hooks[name].push( callback );
+		} catch
+		{
+
+		}
 	},
 
-	off: function(name, callback) {
-		// remove callback hook
-		name = name.replace(/^on/i, '').toLowerCase();
-		if (this.hooks[name]) {
-			if (callback) {
-				// remove one selected callback from list
-				var idx = this.hooks[name].indexOf(callback);
-				if (idx > -1) this.hooks[name].splice(idx, 1);
-			}
-			else {
-				// no callback specified, so clear all
-				this.hooks[name] = [];
-			}
+		off: function(name, callback) {
+			try
+			{
+				// remove callback hook
+				name = name.replace(/^on/i, '').toLowerCase();
+				if (this.hooks[name]) {
+					if (callback) {
+						// remove one selected callback from list
+						var idx = this.hooks[name].indexOf(callback);
+						if (idx > -1) this.hooks[name].splice(idx, 1);
+					}
+					else {
+						// no callback specified, so clear all
+						this.hooks[name] = [];
+					}
+				}
+		} catch
+		{
+
 		}
 	},
 
 	dispatch: function() {
-		// fire hook callback, passing optional value to it
-		var name = arguments[0].replace(/^on/i, '').toLowerCase();
-		var args = Array.prototype.slice.call(arguments, 1);
+		try{
+			// fire hook callback, passing optional value to it
+			var name = arguments[0].replace(/^on/i, '').toLowerCase();
+			var args = Array.prototype.slice.call(arguments, 1);
 
-		if (this.hooks[name] && this.hooks[name].length) {
-			for (var idx = 0, len = this.hooks[name].length; idx < len; idx++) {
-				var hook = this.hooks[name][idx];
+			if (this.hooks[name] && this.hooks[name].length) {
+				for (var idx = 0, len = this.hooks[name].length; idx < len; idx++) {
+					var hook = this.hooks[name][idx];
 
-				if (typeof(hook) == 'function') {
-					// callback is function reference, call directly
-					hook.apply(this, args);
-				}
-				else if ((typeof(hook) == 'object') && (hook.length == 2)) {
-					// callback is PHP-style object instance method
-					hook[0][hook[1]].apply(hook[0], args);
-				}
-				else if (window[hook]) {
-					// callback is global function name
-					window[ hook ].apply(window, args);
-				}
-			} // loop
-			return true;
+					if (typeof(hook) == 'function') {
+						// callback is function reference, call directly
+						hook.apply(this, args);
+					}
+					else if ((typeof(hook) == 'object') && (hook.length == 2)) {
+						// callback is PHP-style object instance method
+						hook[0][hook[1]].apply(hook[0], args);
+					}
+					else if (window[hook]) {
+						// callback is global function name
+						window[ hook ].apply(window, args);
+					}
+				} // loop
+				return true;
+			}
+			else if (name == 'error') {
+				// default error handler if no custom one specified
+				alert("Webcam.js Error: " + args[0]);
+			}
+
+			return false; // no hook defined
+	}catch{
+
 		}
-		else if (name == 'error') {
-			// default error handler if no custom one specified
-			alert("Webcam.js Error: " + args[0]);
-		}
-
-		return false; // no hook defined
 	},
 
 	setSWFLocation: function(url) {

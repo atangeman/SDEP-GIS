@@ -31,16 +31,16 @@ The mobile app publishes edits and comments to a Feature Service housed in an Ar
 Edits published to the REST data service are also viewable by an out-of-the-box ArcGIS Online webmap. Individuals and professionals that staff regional emergency operations centers (EOCs) can edit and monitor data in real time. This allows for direct, real-time viewing of the data by planners and emergency officials to document and catalog areas affected by the disaster.
 
 
-## Development Plan (High-Level)
+## Development Credits
 
 **Server & Data Feed**
 
-The data feed (REST Service) will be set up on the development Amazon EC2 instance with ArcGIS Server 10.3 installed. A Feature Service will be published on the ArcGIS for Server instance for data collection and editing by the public. Data edits will be stored in a SQL*Express database with a small ArcGIS Spatial Database Engine (SDE) installed and configured. All additional basemaps used by the app will rely on the San Diego County Emergency Data Feed (http://goo.gl/JWGk03), ArcGIS Online Live Feed (http://goo.gl/tl4GRs) and additional feeds (FEMA, NOAA) as needed.
+The data feed (REST Service) was set up using an Amazon EC2 instance. Feature services were published on ArcGIS Online. Additional basemaps used by the app relied on San Diego County Emergency Data Feed (http://goo.gl/JWGk03), ArcGIS Online Live Feed (http://goo.gl/tl4GRs).
 
 **Mobile / Web App**
 
-The mobile app will be developed using a mix of ArcGIS for JavaScript API, BootStrap, and JQuery Mobile. The development environment will be a temporary Amazon EC2 instance and hosted via IIS with a temporary URL designation. The code will be stored in a collaborative GitHub workspace which will push changes to the development environment prior to the demo.
+The mobile app was a modified fork of ESRI's Citizen Service Request app: https://github.com/Esri/citizen-service-request. The modifications to this app can be observed by running a comparison using any number of git/subversion templates. One major modification included coding a custom photo submission widget to restrict submissions to live camera feeds.
 
 **EOC ArcGIS Online App**
 
-The emergency operations center (EOC) data viewer application will be hosted on a temporary ArcGIS Online account set up and configured in advance of the demo. The AGOL web map will connect to the REST endpoint layer and display the data during the demo for informative purposes. Symbology, data display, and custom tools will be included as needed.
+The emergency operations center (EOC) data viewer application was created and hosted on a temporary ArcGIS Online account set up and configured in advance of the demo. The web app was built using ESRI's WebAppBuilder to add enhanced functionality.

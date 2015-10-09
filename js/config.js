@@ -55,7 +55,7 @@ dojo.declare("js.config", null, {
     ApplicationIcon: "images/logo.png",
 
     // Set splash window content - Message that appears when the application starts
-    SplashScreenMessage: "<br/><b>Submit a Request for Service:</b><br/><br/>Please search for an address or click directly on the map to locate your request for service. Then, provide additional detail and click or tap Submit to initiate your request.</br></br>If you find a request has already been submitted, you can click or tap on the existing request, provide additional comments and increase the importance of the request.",
+    SplashScreenMessage: "<br/><b>San Diego Emergency Participatory GIS App:</b><br/><br/>Please click directly on the edit icon (lower-left) to create and submit a data point. Fil out the form with information on the incident, including pictures and relevent comments and details. </br></br>If you find a request has already been submitted, you can click or tap on the existing request, provide additional comments and increase the importance of the request. </BR></BR>LEAGAL DISCLAIMER HERE",
 
     // Set URL of help page/portal
     HelpURL: "help.htm",
